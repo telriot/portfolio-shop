@@ -10,7 +10,7 @@
     "cli": "ts-node-dev src/cli.ts",
     "dev": " NODE_PATH=./src nodemon --watch './**/*.ts' --exec 'ts-node-dev' src/index.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
-    "test": "jest",
+    "test": "jest --watchAll --no-cache",
     "clean": "rm -rf dist build package",
     "ts-node": "ts-node-dev",
     "docs": "typedoc --entryPoints src/index.ts",

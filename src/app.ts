@@ -1,11 +1,11 @@
 import express, { json } from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
-import { NotFoundError } from 'errors/not-found-error';
-import { errorHandler } from 'middlewares/error-handler';
+import { NotFoundError } from 'custom/errors';
+import { errorHandler } from 'custom/middlewares';
 import cors from 'cors';
 import path from 'path';
-//Import routes
+import { signUpRoute } from 'routes/auth';
 
 export const app = express();
 app.use(
@@ -25,6 +25,7 @@ app.use(
 	})
 );
 
+app.use(signUpRoute)
 app.all('*', async () => {
 	throw new NotFoundError();
 });

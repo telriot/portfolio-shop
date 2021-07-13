@@ -25,16 +25,12 @@
     ],
     "paths": {
       "controllers/*":["./controllers/*"],
-      "middleware/*":["./middleware/*"],
+      "custom/errors":["./custom/errors/index.ts"],
+      "custom/middlewares":["./custom/middlewares/index.ts"],
       "models/*":["./models/*"],
       "routes/*":["./routes/*"],
-      "utils/arrays/*":["./utils/arrays/*"],
-      "utils/cardData/*":["./utils/cardData/*"],
-      "utils/objects/*":["./utils/objects/*"],
-      "utils/queries/*":["./utils/queries/*"],
-      "utils/time/*":["./utils/time/*"],
-      "utils/testTimeout":["./utils/testTimeout"]
-
+      "services/*":["./services/*"],
+      "test/*":["./test/*"]
     },
     "lib": [
       "ES6",
@@ -44,7 +40,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/test/setup.js"  ],
   "exclude": [
     "node_modules",
     "**/*.test.ts"
