@@ -1,9 +1,11 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
+export const JWT_KEY='testKey'
+
 let mongo: MongoMemoryServer
 beforeAll(async () => {
-	process.env.JWT_KEY = 'testkey'
+	process.env.JWT_KEY = JWT_KEY
 	mongo = await MongoMemoryServer.create();
 	const uri = mongo.getUri();
 	await mongoose.connect(uri, {

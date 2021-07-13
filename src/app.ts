@@ -2,11 +2,11 @@ import express, { json } from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError } from 'custom/errors';
-import { errorHandler } from 'custom/middlewares';
+import { currentUser, errorHandler } from 'custom/middlewares';
 import cors from 'cors';
 import path from 'path';
 import { signUpRouter, signInRouter, signOutRouter, currentUserRouter } from 'routes/auth';
-
+import { showUserRouter, updateUserRouter } from 'routes/users';
 export const app = express();
 app.use(
 	cors({
@@ -24,10 +24,15 @@ app.use(
 		secure: process.env.NODE_ENV !== 'test'
 	})
 );
+app.use(currentUser)
 app.use(currentUserRouter)
 app.use(signInRouter)
 app.use(signUpRouter)
 app.use(signOutRouter)
+
+app.use(showUserRouter)
+app.use(updateUserRouter)
+
 app.all('*', async () => {
 	throw new NotFoundError();
 });
