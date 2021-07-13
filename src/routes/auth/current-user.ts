@@ -1,8 +1,9 @@
-import { Router } from 'express';
-// import request from 'supertest';
-// import { app } from '../../app';
-// import signIn from '../../test/signIn'
+import {Router} from 'express';
+import { currentUser } from 'custom/middlewares';
 
-const router = Router()
+const router = Router();
+router.get('/api/auth/currentuser', currentUser, (req, res) => {
+	res.send({ currentUser: req.currentUser || null });
+});
 
-export {router as currentUserRoute}
+export { router as currentUserRouter };

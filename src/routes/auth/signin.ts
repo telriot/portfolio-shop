@@ -39,4 +39,4 @@ router.post(
 	}
 );
 
-export {router as signInRoute}
+export {router as signInRouter}

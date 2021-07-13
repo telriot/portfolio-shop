@@ -1,6 +1,6 @@
-import {currentUserRoute} from './current-user'
-import {signInRoute} from './signin'
-import {signOutRoute} from './signout'
-import {signUpRoute} from './signup'
+import {currentUserRouter} from './current-user'
+import {signInRouter} from './signin'
+import {signOutRouter} from './signout'
+import {signUpRouter} from './signup'
 
-export {currentUserRoute, signInRoute, signOutRoute, signUpRoute}
+export {currentUserRouter, signInRouter, signOutRouter, signUpRouter}

@@ -1,8 +1,9 @@
-import { Router } from 'express';
-// import request from 'supertest';
-// import { app } from '../../app';
-// import signIn from '../../test/signIn'
+import {Router} from 'express'
 
 const router = Router()
+router.post('/api/auth/signout', (req,res) => {
+    req.session = null;
+    res.send({})
+})
 
-export {router as signOutRoute}
+export {router as signOutRouter}
