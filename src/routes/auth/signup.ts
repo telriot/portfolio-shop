@@ -1,28 +1,26 @@
 import { Request, Response, Router } from 'express';
-import { body } from 'express-validator';
 import { validateRequest } from 'custom/middlewares';
 import { BadRequestError } from 'custom/errors';
 import { User, UserAttrs } from 'models/user';
 import jwt from 'jsonwebtoken';
+import {
+	validateAddress,
+	validateFirstName,
+	validateLastName,
+	validatePassword,
+	validateEmail
+} from 'validation/validators';
 
 const router = Router();
 
 router.post(
 	'/api/auth/signup',
 	[
-		body('firstName')
-			.isLength({ min: 2, max: 30 })
-			.withMessage('First name must be between 4 and 30 characters'),
-		body('lastName')
-			.isLength({ min: 2, max: 30 })
-			.withMessage('Last name must be between 4 and 30 characters'),
-		body('address.addressLine1').not().isEmpty(),
-		body('address.addressLine2').not().isEmpty(),
-		body('address.city').not().isEmpty(),
-		body('address.country').not().isEmpty(),
-		body('address.zip').not().isEmpty(),
-		body('password').trim().isLength({min:4, max:20}).withMessage("password must be between 4 and 20 characters"),
-		body('email').trim().isEmail()
+		validateFirstName,
+		validateLastName,
+		...validateAddress,
+		validatePassword,
+		validateEmail
 	],
 	validateRequest,
 	async (req: Request, res: Response) => {
@@ -47,4 +45,4 @@ router.post(
 	}
 );
 
-export { router as signUpRouter}
+export { router as signUpRouter };
