@@ -32,11 +32,9 @@ router.post(
 		if (existingUser) {
 			throw new BadRequestError('Email in use');
 		}
-        console.log(existingUser, 'EXISTING USER')
 		const user = User.build({ firstName, lastName, email, password, address });
 		await user.save();
 
-        console.log(user, 'USER')
 		const userJwt = jwt.sign(
 			{ id: user.id, email: user.email },
 			process.env.JWT_KEY!

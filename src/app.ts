@@ -5,7 +5,7 @@ import { NotFoundError } from 'custom/errors';
 import { errorHandler } from 'custom/middlewares';
 import cors from 'cors';
 import path from 'path';
-import { signUpRoute } from 'routes/auth';
+import { signUpRoute, signInRoute } from 'routes/auth';
 
 export const app = express();
 app.use(
@@ -24,7 +24,7 @@ app.use(
 		secure: process.env.NODE_ENV !== 'test'
 	})
 );
-
+app.use(signInRoute)
 app.use(signUpRoute)
 app.all('*', async () => {
 	throw new NotFoundError();

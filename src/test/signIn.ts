@@ -4,7 +4,7 @@ import {userData} from './mocks/data'
 const signIn = async () : Promise<string[]>=> {
 
 	const response = await request(app)
-		.post('/api/users/signup')
+		.post('/api/auth/signup')
 		.send(userData)
 		.expect(201);
 	const cookie = response.get('Set-Cookie');
