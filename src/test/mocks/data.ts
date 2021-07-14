@@ -40,7 +40,7 @@ export const testProducts : ProductAttrs[]= [
 		name:`Respect My Authority T-shirt`,
 		price:1999,
 		stock:20,
-		imageSrc:'',
+		imageSrc:'https://picsum.photos/200/300',
 		stripeId:'prod_JqkWc2SAl8mrzu'
 	},
 	{
@@ -48,7 +48,7 @@ export const testProducts : ProductAttrs[]= [
 		name:`This Is Just A Test T-shirt`,
 		price:799,
 		stock:100,
-		imageSrc:'',
+		imageSrc:'https://picsum.photos/200/300',
 		stripeId:'prod_JqkVYfXo8hOjUH'
 	},
 	{
@@ -56,7 +56,7 @@ export const testProducts : ProductAttrs[]= [
 		name:`They Live T-shirt`,
 		price:1299,
 		stock:50,
-		imageSrc:'',
+		imageSrc:'https://picsum.photos/200/300',
 		stripeId:'prod_JqkUAaP40afnHa'
 	},
 	{
@@ -64,7 +64,7 @@ export const testProducts : ProductAttrs[]= [
 		name:`Just A Random T-shirt`,
 		price:999,
 		stock:20,
-		imageSrc:'',
+		imageSrc:'https://picsum.photos/200/300',
 		stripeId:'prod_JqkUXzOodFhSkz'
 	}
 ]
