@@ -1,5 +1,5 @@
 import { UserAddress } from '../../models/user';
-
+import {ProductAttrs} from '../../models/product'
 //USER DATA
 export const email = 'test@test.com';
 export const password = 'password';
@@ -33,3 +33,38 @@ export const updatedUserData = {
 	updatedFirstName,
 	updatedLastName
 };
+//TEST PRODUCTS
+export const testProducts : ProductAttrs[]= [
+	{
+		description: `A fantastic t-shirt inspired by Eric Cartman's wisdom. \nA favorite among the youth.`,
+		name:`Respect My Authority T-shirt`,
+		price:1999,
+		stock:20,
+		imageSrc:'',
+		stripeId:'prod_JqkWc2SAl8mrzu'
+	},
+	{
+		description: `Because it actually is. In the end, what should I say? It is what it is.`,
+		name:`This Is Just A Test T-shirt`,
+		price:799,
+		stock:100,
+		imageSrc:'',
+		stripeId:'prod_JqkVYfXo8hOjUH'
+	},
+	{
+		description: `They Live now more than ever. But Roddy Piper is no longer there to save us from them.`,
+		name:`They Live T-shirt`,
+		price:1299,
+		stock:50,
+		imageSrc:'',
+		stripeId:'prod_JqkUAaP40afnHa'
+	},
+	{
+		description: `Here we are not even testing. We are providing randomness. \nMath.random()*t-shirt.`,
+		name:`Just A Random T-shirt`,
+		price:999,
+		stock:20,
+		imageSrc:'',
+		stripeId:'prod_JqkUXzOodFhSkz'
+	}
+]

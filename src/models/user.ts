@@ -7,6 +7,7 @@ export interface UserAddress {
 	city: string;
 	country: string;
 	zip: string;
+	isAdmin?: boolean;
 }
 
 export interface UserAttrs {
@@ -18,7 +19,7 @@ export interface UserAttrs {
 }
 
 interface UserModel extends Model<UserDoc> {
-	build(attrs: UserAttrs): UserDoc;
+	build(attrs: UserAttrs, isAdmin?:boolean): UserDoc;
 }
 
 interface UserDoc extends Document {
@@ -29,6 +30,7 @@ interface UserDoc extends Document {
 	orders: string[];
 	address: UserAddress;
 	cart: Record<string, number>;
+	isAdmin: boolean;
 }
 
 const userSchema = new Schema(
@@ -43,7 +45,7 @@ const userSchema = new Schema(
 		},
 		firstName: String,
 		lastName: String,
-		orders: [{type: Schema.Types.ObjectId, ref:'Order'}],
+		orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
 		address: {
 			addressLine1: String,
 			addressLine2: String,
@@ -51,6 +53,7 @@ const userSchema = new Schema(
 			country: String,
 			zip: String
 		},
+		isAdmin: Boolean,
 		cart: Object
 	},
 	{
@@ -64,8 +67,8 @@ const userSchema = new Schema(
 		}
 	}
 );
-userSchema.statics.build = (attrs: UserAttrs) => {
-	return new User(attrs);
+userSchema.statics.build = (attrs: UserAttrs, isAdmin: boolean = false) => {
+	return new User({ ...attrs, isAdmin });
 };
 
 userSchema.pre('save', async function (done) {
