@@ -7,4 +7,4 @@ router.post('/api/products/', async(req:Request, res:Response)=> {
     // const product = await Product.build({})
     res.status(200)
 })
-export {router as showOneProductRouter}
+export {router as createOneProductRouter}

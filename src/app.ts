@@ -7,6 +7,7 @@ import cors from 'cors';
 import path from 'path';
 import { signUpRouter, signInRouter, signOutRouter, currentUserRouter } from 'routes/auth';
 import { showUserRouter, updateUserRouter } from 'routes/users';
+import { createOneProductRouter, showOneProductRouter, showManyProductsRouter } from 'routes/products';
 export const app = express();
 app.use(
 	cors({
@@ -32,6 +33,10 @@ app.use(signOutRouter)
 
 app.use(showUserRouter)
 app.use(updateUserRouter)
+
+app.use(createOneProductRouter)
+app.use(showOneProductRouter)
+app.use(showManyProductsRouter)
 
 app.all('*', async () => {
 	throw new NotFoundError();
