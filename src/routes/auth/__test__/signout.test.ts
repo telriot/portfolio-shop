@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../../app';
-import signIn from '../../../test/signIn';
+import {signIn} from'../../../test/signIn';
 
 test('Clears the cookie after signout', async () => {
 	await signIn()

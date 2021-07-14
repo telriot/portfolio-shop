@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../../app';
-import signIn from '../../../test/signIn'
+import {signIn} from'../../../test/signIn'
 import {email} from '../../../test/mocks/data'
 test("Responds with details about the current user", async ()=>{
     const cookie = await signIn()

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../../app';
-import signIn from '../../../test/signIn';
+import {signIn} from'../../../test/signIn';
 import {createMongooseId} from '../../../test/createMongooseId'
 import { email, firstName } from '../../../test/mocks/data';
 // import { userData } from '../../../test/mocks/data';

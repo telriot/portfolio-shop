@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../../app';
-import signIn from '../../../test/signIn';
+import {signIn} from'../../../test/signIn';
 import { password, email } from '../../../test/mocks/data';
 
 const testRoute = '/api/auth/signin';
