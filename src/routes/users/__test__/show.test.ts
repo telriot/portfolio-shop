@@ -11,9 +11,9 @@ test('Returns 401 when user is not logged in', async ()=> {
     await request(app).get(`${testRoute}/${createMongooseId()}`).expect(401)
 })
 
-test('Returns 401 when logged user and request user are different', async ()=> {
-    await signIn()
-    await request(app).get(`${testRoute}/${createMongooseId()}`).expect(401)
+test('Returns 403 when logged user and request user are different', async ()=> {
+    const cookie = await signIn()
+    await request(app).get(`${testRoute}/${createMongooseId()}`).set('Cookie', cookie).expect(403)
 })
 test('Returns user data when logged user and requested user match', async ()=> {
     const cookie = await signIn()

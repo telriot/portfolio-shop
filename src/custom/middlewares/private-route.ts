@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
-import { NotAuthorizedError } from 'custom/errors';
+import { NotAuthorizedError, ForbiddenError } from 'custom/errors';
 
 export const privateRoute = (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ): void => {
-	if (!req.currentUser || req.currentUser.id !== req.params.id) {
+	if (!req.currentUser) {
 		throw new NotAuthorizedError();
+	}
+	if (req.currentUser.id !== req.params.id) {
+		throw new ForbiddenError();
 	}
 	next();
 };
