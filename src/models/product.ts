@@ -1,4 +1,5 @@
-import mongoose, { Document, Model } from 'mongoose';
+import mongoose, { Document,PaginateModel } from 'mongoose';
+import mongoosePaginate from "mongoose-paginate-v2";
 
 export type ProductStatus = 'pending' | 'fulfilled' | 'canceled';
 
@@ -11,7 +12,7 @@ export interface ProductAttrs {
 	stripeId: string;
 }
 
-interface ProductModel extends Model<ProductDoc> {
+interface ProductModel extends PaginateModel<ProductDoc> {
 	build(attrs: ProductAttrs): ProductDoc;
 }
 
@@ -52,9 +53,11 @@ productSchema.statics.build = (attrs: ProductAttrs) => {
 	return new Product(attrs);
 };
 
+productSchema.plugin(mongoosePaginate)
+
 const Product = mongoose.model<ProductDoc, ProductModel>(
 	'Product',
 	productSchema
-);
+) 
 
 export { Product };
