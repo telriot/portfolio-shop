@@ -8,6 +8,8 @@
   "main": "./dist/tsc/index.js",
   "scripts": {
     "cli": "ts-node-dev src/cli.ts",
+    "client": "yarn --cwd ./client start",
+    "concurrent": "concurrently \"yarn dev\" \"yarn client\"",
     "dev": " NODE_PATH=./src nodemon --watch './**/*.ts' --exec 'ts-node-dev' src/index.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest --watchAll --no-cache",
@@ -18,7 +20,7 @@
     "esbuild-node": "esbuild src/cli.ts --bundle --platform=node --minify --sourcemap=external --outfile=dist/esbuild/cli.js",
     "esbuild-node:dev": "esbuild src/cli.ts --bundle --sourcemap=external --outfile=dist/esbuild/cli.js",
     "esbuild-node:watch": "esbuild src/cli.ts --bundle --watch --sourcemap=external --outfile=dist/esbuild/cli.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn build --prefix client "
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd client install  && yarn --cwd client build "
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -44,6 +46,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "concurrently": "^6.2.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
