@@ -7,6 +7,7 @@
   "license": "MIT",
   "main": "./dist/tsc/index.js",
   "scripts": {
+    "db": "ts-node-dev src/dbBuilder.ts",
     "cli": "ts-node-dev src/cli.ts",
     "client": "yarn --cwd ./client start",
     "concurrent": "concurrently \"yarn dev\" \"yarn client\"",

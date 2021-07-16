@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { app } from './app';
 dotenv.config();
 
-const start = async () => {
+export const start = async () => {
 	if (!process.env.JWT_KEY) {
 		throw new Error('JWT_KEY must be defined');
 	}
