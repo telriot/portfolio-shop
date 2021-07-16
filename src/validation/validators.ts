@@ -1,4 +1,5 @@
 import { body } from 'express-validator';
+import mongoose from 'mongoose';
 
 export const validateFirstName = body('firstName')
 	.isLength({ min: 2, max: 30 })
@@ -33,18 +34,26 @@ export const validateProduct = [
 		.notEmpty()
 		.withMessage('Description is required'),
 	body('name').isString().notEmpty().withMessage('Name is required'),
-	body('price')
-		.isNumeric()
-		.not()
-		.notEmpty()
-		.withMessage('Price is required'),
+	body('price').isNumeric().not().notEmpty().withMessage('Price is required'),
 	body('stock').isNumeric().notEmpty().withMessage('Stock is required'),
 	body('imageSrc')
 		.isString()
 		.notEmpty()
 		.withMessage('Image source is required'),
-	body('stripeId')
-		.isString()
-		.notEmpty()
-		.withMessage('Stripe Id is required')
+	body('stripeId').isString().notEmpty().withMessage('Stripe Id is required')
 ];
+
+export const validateCartProducts = body('products')
+	.isObject()
+	.custom((products) => {
+		console.log(products, 'PROD FROM VALIDATOR')
+		Object.entries(products).forEach(([key, value]) => {
+			if (!mongoose.Types.ObjectId.isValid(key)) {
+				throw new Error('Not a valid product id');
+			}
+			if (typeof value !== 'number' || (typeof value !== 'number' && isNaN(value))) {
+				throw new Error('Not a valid quantity');
+			}
+		});
+		return true
+	});

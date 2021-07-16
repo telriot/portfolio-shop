@@ -17,7 +17,7 @@ test('Returns 400 on invalid data', async ()=> {
     const cookie = await adminSignIn()
     await request(app).post(testRoute).set('Cookie', cookie).send('sending a string').expect(400)
 })
-test('Returns 201 on valid data admin', async ()=> {
+test('Returns 201 on valid data and admin', async ()=> {
     const cookie = await adminSignIn()
     const response = await request(app).post(testRoute).set('Cookie', cookie).send(testProducts[0]).expect(201)
     expect(response.body.name).toEqual(testProducts[0].name)

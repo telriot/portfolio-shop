@@ -1,11 +1,15 @@
 import mongoose, { Document, Model } from 'mongoose';
 
-export type OrderStatus= 'pending' | 'fulfilled' | 'canceled'
+enum OrderStatus {
+	Pending = 'pending',
+	Fulfilled = 'fulfilled',
+	Cancelled = 'cancelled'
+}
 
 interface OrderAttrs {
-    customerId: string
-    status: OrderStatus
-    priceTotal: number
+	customerId: string;
+	status: OrderStatus;
+	priceTotal: number;
 }
 
 interface OrderModel extends Model<OrderDoc> {
@@ -13,26 +17,35 @@ interface OrderModel extends Model<OrderDoc> {
 }
 
 interface OrderDoc extends Document {
-    customerId: string
-    status: OrderStatus
-    priceTotal: number
-    created: Date
-    lastUpdated: Date
+	customerId: string;
+	status: OrderStatus;
+	priceTotal: number;
+	created: Date;
+	lastUpdated: Date;
 }
 
 const orderSchema = new mongoose.Schema(
 	{
-        customerId: String,
-        status: String,
-        priceTotal: Number,
-        created: {
-            type: Date,
-            default: Date.now,
-        },
-        lastUpdated: {
-            type: Date,
-            default: Date.now,
-        }
+		customerId: {
+			type: String,
+			required: true
+		},
+		status: {
+			type: String,
+			default: OrderStatus.Pending
+		},
+		priceTotal: {
+			type: Number,
+			required: true
+		},
+		created: {
+			type: Date,
+			default: Date.now
+		},
+		lastUpdated: {
+			type: Date,
+			default: Date.now
+		}
 	},
 	{
 		toJSON: {

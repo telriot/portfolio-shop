@@ -19,7 +19,7 @@ export interface UserAttrs {
 }
 
 interface UserModel extends Model<UserDoc> {
-	build(attrs: UserAttrs, isAdmin?:boolean): UserDoc;
+	build(attrs: UserAttrs, isAdmin?: boolean): UserDoc;
 }
 
 interface UserDoc extends Document {
@@ -29,7 +29,7 @@ interface UserDoc extends Document {
 	lastName: string;
 	orders: string[];
 	address: UserAddress;
-	cart: Record<string, number>;
+	cart: Schema.Types.ObjectId;
 	isAdmin: boolean;
 }
 
@@ -43,18 +43,27 @@ const userSchema = new Schema(
 			type: String,
 			required: true
 		},
-		firstName: String,
-		lastName: String,
+		firstName: {
+			type: String,
+			required: true
+		},
+		lastName: {
+			type: String,
+			required: true
+		},
 		orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
 		address: {
-			addressLine1: String,
-			addressLine2: String,
-			city: String,
-			country: String,
-			zip: String
+			type: {
+				addressLine1: String,
+				addressLine2: String,
+				city: String,
+				country: String,
+				zip: String
+			},
+			required: true
 		},
 		isAdmin: Boolean,
-		cart: Object
+		cart: [{ type: Schema.Types.ObjectId, ref: 'Cart' }]
 	},
 	{
 		toJSON: {

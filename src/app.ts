@@ -8,6 +8,7 @@ import path from 'path';
 import { signUpRouter, signInRouter, signOutRouter, currentUserRouter } from 'routes/auth';
 import { showUserRouter, updateUserRouter } from 'routes/users';
 import { createOneProductRouter, showOneProductRouter, showManyProductsRouter } from 'routes/products';
+import { showCartRouter, createCartRouter, updateCartRouter } from 'routes/carts';
 export const app = express();
 app.use(
 	cors({
@@ -26,17 +27,26 @@ app.use(
 	})
 );
 app.use(currentUser)
+
+//AUTH ROUTES
 app.use(currentUserRouter)
 app.use(signInRouter)
 app.use(signUpRouter)
 app.use(signOutRouter)
 
+//USER ROUTES
 app.use(showUserRouter)
 app.use(updateUserRouter)
 
+//PRODUCT ROUTES
 app.use(createOneProductRouter)
 app.use(showOneProductRouter)
 app.use(showManyProductsRouter)
+
+//CART ROUTES
+app.use(createCartRouter)
+app.use(showCartRouter)
+app.use(updateCartRouter)
 
 app.all('*', async () => {
 	throw new NotFoundError();

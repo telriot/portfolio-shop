@@ -16,7 +16,7 @@ interface ProductModel extends PaginateModel<ProductDoc> {
 	build(attrs: ProductAttrs): ProductDoc;
 }
 
-interface ProductDoc extends Document {
+export interface ProductDoc extends Document {
 	description: string;
 	name: string;
 	price: number;
@@ -28,12 +28,28 @@ interface ProductDoc extends Document {
 
 const productSchema = new mongoose.Schema(
 	{
-		description: String,
-		name: String,
-		price: Number,
-		stock: Number,
+		description: {
+			type: String,
+			required:true
+		},
+		name: {
+			type: String,
+			required:true
+		},
+		price: {
+			type: Number,
+			required:true
+		},
+		stock: {
+			type: Number,
+			required:true,
+			default:0
+		},
 		imageSrc: String,
-        stripeId: String,
+        stripeId: {
+			type: String,
+			required:true
+		},
 		created: {
 			type: Date,
 			default: Date.now
