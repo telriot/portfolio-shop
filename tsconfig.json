@@ -27,6 +27,7 @@
       "controllers/*":["./controllers/*"],
       "custom/errors":["./custom/errors/index.ts"],
       "custom/middlewares":["./custom/middlewares/index.ts"],
+      "custom/utils/*":["./custom/utils/*"],
       "models/*":["./models/*"],
       "routes/*":["./routes/*"],
       "services/*":["./services/*"],

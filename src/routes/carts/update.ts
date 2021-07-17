@@ -6,7 +6,8 @@ import {
 } from 'validation/validators';
 import { Cart } from 'models/cart';
 import { NotFoundError } from 'custom/errors';
-// import { Cart } from 'models/Cart';
+import { buildExpirationDate } from 'custom/utils/buildExpirationDate';
+
 const router = Router();
 
 router.patch(
@@ -17,7 +18,7 @@ router.patch(
 		const { products } = req.body;
 		const cart = await Cart.findByIdAndUpdate(
 			req.params.id,
-			{ products },
+			{ products, expiresAt: buildExpirationDate() },
 			{ new: true }
 		);
 		if(!cart){
