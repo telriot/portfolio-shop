@@ -1,5 +1,5 @@
-import { body } from 'express-validator';
-import mongoose from 'mongoose';
+import { body, param } from 'express-validator';
+import { isMongooseIdValid } from './isMongooseIdValid';
 
 export const validateFirstName = body('firstName')
 	.isLength({ min: 2, max: 30 })
@@ -46,14 +46,20 @@ export const validateProduct = [
 export const validateCartProducts = body('products')
 	.isObject()
 	.custom((products) => {
-		console.log(products, 'PROD FROM VALIDATOR')
+		console.log(products, 'PROD FROM VALIDATOR');
 		Object.entries(products).forEach(([key, value]) => {
-			if (!mongoose.Types.ObjectId.isValid(key)) {
+			if (!isMongooseIdValid(key)) {
 				throw new Error('Not a valid product id');
 			}
-			if (typeof value !== 'number' || (typeof value !== 'number' && isNaN(value))) {
+			if (
+				typeof value !== 'number' ||
+				(typeof value !== 'number' && isNaN(value))
+			) {
 				throw new Error('Not a valid quantity');
 			}
 		});
-		return true
+		return true;
 	});
+export const validateMongooseIdParam = param('id').custom((id) =>
+	isMongooseIdValid(id)
+);

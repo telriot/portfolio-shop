@@ -6,6 +6,7 @@ enum CartStatus {
 }
 interface CartAttrs {
     products: Map<string, number>
+    expiresAt: string
 }
 
 interface CartModel extends Model<CartDoc> {
@@ -18,7 +19,7 @@ interface CartDoc extends Document {
     status: CartStatus
     products: Map<string, number>
     created: Date
-    expiresAt: Date
+    expiresAt: string
 }
 
 const cartSchema = new mongoose.Schema(
@@ -33,8 +34,8 @@ const cartSchema = new mongoose.Schema(
             default: Date.now,
         },
         expiresAt: {
-            type: Date,
-            default: Date.now,
+            type: String,
+            required:true
         }
 	},
 	{
