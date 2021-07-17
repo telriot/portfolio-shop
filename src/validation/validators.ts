@@ -35,7 +35,20 @@ export const validateProduct = [
 		.withMessage('Description is required'),
 	body('name').isString().notEmpty().withMessage('Name is required'),
 	body('price').isNumeric().not().notEmpty().withMessage('Price is required'),
-	body('stock').isNumeric().notEmpty().withMessage('Stock is required'),
+	body('stock').custom(stock=>{
+		Object.entries(stock).forEach(([key, value]) => {
+			if (typeof(key) !== 'string') {
+				throw new Error('Size not valid');
+			}
+			if (
+				typeof value !== 'number' ||
+				(typeof value !== 'number' && isNaN(value))
+			) {
+				throw new Error('Not a valid quantity');
+			}
+		});
+		return true;
+	}).withMessage('Stock data is required'),
 	body('imageSrc')
 		.isString()
 		.notEmpty()
