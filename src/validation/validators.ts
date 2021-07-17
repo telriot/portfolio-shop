@@ -46,7 +46,6 @@ export const validateProduct = [
 export const validateCartProducts = body('products')
 	.isObject()
 	.custom((products) => {
-		console.log(products, 'PROD FROM VALIDATOR');
 		Object.entries(products).forEach(([key, value]) => {
 			if (!isMongooseIdValid(key)) {
 				throw new Error('Not a valid product id');

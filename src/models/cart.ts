@@ -14,7 +14,7 @@ interface CartModel extends Model<CartDoc> {
     mapJSONProducts:(products: Record<string, unknown>) => Map<string, number>
 }
 
-interface CartDoc extends Document {
+export interface CartDoc extends Document {
     id: string
     status: CartStatus
     products: Map<string, number>

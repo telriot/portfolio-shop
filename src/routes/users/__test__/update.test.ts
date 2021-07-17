@@ -9,12 +9,12 @@ import {
 const testRoute = `/api/users`;
 
 test('Returns 401 when user is not logged in', async () => {
-	await request(app).put(`${testRoute}/${createMongooseId()}`).expect(401);
+	await request(app).patch(`${testRoute}/${createMongooseId()}`).expect(401);
 });
 
 test('Returns 403 when logged user and request user are different', async () => {
 	const cookie = await signIn();
-	await request(app).put(`${testRoute}/${createMongooseId()}`).set('Cookie', cookie).expect(403);
+	await request(app).patch(`${testRoute}/${createMongooseId()}`).set('Cookie', cookie).expect(403);
 });
 describe('With current user', () => {
 	let cookie:string[]
@@ -27,14 +27,14 @@ describe('With current user', () => {
 	})
 		test('Returns 400: Bad Request when provided invalid data', async () => {
 			await request(app)
-				.put(`${testRoute}/${currentUserRes.body.currentUser.id}`)
+				.patch(`${testRoute}/${currentUserRes.body.currentUser.id}`)
 				.set('Cookie', cookie)
 				.send({...userData, address: 'A string instead of an address object'})
 				.expect(400);
 		});
 		test('Returns user data when logged user and requested user match', async ()=> {
 			const response = await request(app)
-				.put(`${testRoute}/${currentUserRes.body.currentUser.id}`)
+				.patch(`${testRoute}/${currentUserRes.body.currentUser.id}`)
 				.set('Cookie', cookie)
 				.send({...userData, address: updatedAddress})
 				.expect(200);

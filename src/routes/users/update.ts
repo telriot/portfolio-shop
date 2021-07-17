@@ -4,7 +4,7 @@ import { User } from 'models/user';
 import { validateAddress } from 'validation/validators';
 const router = Router();
 
-router.put(
+router.patch(
 	'/api/users/:id',
 	privateRoute,
 	validateAddress,
