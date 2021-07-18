@@ -4,5 +4,5 @@ import { render, screen } from 'tests/test-utils';
 
 test('App renders correctly', () => {
 	render(<App />);
-	expect(screen.getByLabelText('app-container')).toBeInTheDocument;
+	expect(screen.getByLabelText('app-container')).toBeInTheDocument();
 });

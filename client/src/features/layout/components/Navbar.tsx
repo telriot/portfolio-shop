@@ -32,8 +32,7 @@ const Navbar : FC = () => {
     //  ======================================== JSX
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="sticky" color='inherit'>
           <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
@@ -44,7 +43,6 @@ const Navbar : FC = () => {
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
-      </div>
     );
 }
  

@@ -1,26 +1,35 @@
 //  ======================================== IMPORTS
 import React, { FC } from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Product } from 'storeTypes';
+const useStyles = makeStyles(() =>
+	createStyles({
+		img: {
+			height: '100%'
+		},
+		imgContainer: {
+			height: '100%'
+		}
+	})
+);
 //  ======================================== COMPONENT
-interface LayoutProps {
-	children: React.ReactNode;
+interface ProductImageProps {
+	product: Product;
 }
-const Layout: FC<LayoutProps> = ({ children }) => {
+const ProductImage: FC<ProductImageProps> = ({ product }) => {
 	//  ======================================== HOOKS
+	const classes = useStyles();
 	//  ======================================== STATE
 	//  ======================================== HANDLERS
 	//  ======================================== EFFECTS
 	//  ======================================== JSX
 	return (
-		<div>
-			<Navbar />
-			{children}
-			<Footer />
+		<div className={classes.imgContainer}>
+			<img className={classes.img} alt={product.name} src={product.imageSrc} />
 		</div>
 	);
 };
 
 //  ======================================== EXPORTS
-export default Layout;
+export default ProductImage;
 //  ========================================

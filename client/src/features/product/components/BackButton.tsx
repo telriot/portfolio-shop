@@ -1,26 +1,19 @@
 //  ======================================== IMPORTS
 import React, { FC } from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import BaseButton from 'features/common/BaseButton';
+import { useHistory } from 'react-router';
 //  ======================================== COMPONENT
-interface LayoutProps {
-	children: React.ReactNode;
-}
-const Layout: FC<LayoutProps> = ({ children }) => {
+const BackButton: FC = () => {
 	//  ======================================== HOOKS
+	const history = useHistory();
 	//  ======================================== STATE
 	//  ======================================== HANDLERS
+	const goBack = () => history.goBack();
 	//  ======================================== EFFECTS
 	//  ======================================== JSX
-	return (
-		<div>
-			<Navbar />
-			{children}
-			<Footer />
-		</div>
-	);
+	return <BaseButton onClick={goBack}>Back</BaseButton>;
 };
 
 //  ======================================== EXPORTS
-export default Layout;
+export default BackButton;
 //  ========================================

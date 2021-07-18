@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(1)
 	},
 	button: {
-		background: theme.palette.primary.main
+		
 	},
     input:{
         marginBottom:theme.spacing(2)
@@ -65,7 +65,7 @@ const Newsletter: FC = () => {
 				{({ isSubmitting }) => (
 					<Form>
 
-						<Box paddingX={2} width='100%'>
+						<Box width='100%'>
 						<FormTextField className={classes.input} label='Sign to our newsletter' name='firstName' />
 							{isSubmitting && <LinearProgress />}
 							<BaseButton

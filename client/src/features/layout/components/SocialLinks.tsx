@@ -20,7 +20,7 @@ export interface SocialButtonsProps {
   size?: number;
   className?: string;
 }
-const SocialButtons : FC<SocialButtonsProps> = ({ className }) => {
+const SocialButtons : FC<SocialButtonsProps> = () => {
   //  ======================================== HOOKS
   const classes = useStyles();
 
